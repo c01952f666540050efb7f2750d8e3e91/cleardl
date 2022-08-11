@@ -1,50 +1,62 @@
-from os import listdir, replace, getenv, remove
+from os import listdir, walk, getenv, remove
 from os.path import isfile, join
 from pathlib import Path
 import argparse
 import gnupg
+from time import sleep
+
+# Local Imports
+from helpers import movefiles, check_create_folder, zipfiles
 
 # Parse Arguments
 
+# Get appdata filepath
+temp_filepath = getenv("APPDATA")+"\\"+"TEMP"
+
+# Check Create Temp folder
+check_create_folder(temp_filepath)
+
+# List Filetypes to remove
+typelist = ['json']
 
 # Get Download Path
-mypath = str(Path.home() / "Downloads")
-print(mypath)
+dlpath = str(Path.home() / "Downloads")
+# Get ALL Files
+onlyfiles = [f for f in listdir(dlpath) if isfile(join(dlpath, f))]
 
-# Get Files
-onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+# Get all relevant files
+file_list = {}
+for filetype in typelist:
+    file_list[filetype] = [f for f in onlyfiles if f.split(".")[-1] == filetype]
 
-# Get JSON
-onlyjson = [f for f in onlyfiles if f.split(".")[-1] == 'json']
-
-# Get Binaries
-onlyexe = [f for f in onlyfiles if f.split(".")[-1] == 'exe']
-
-# Get Pub Key File path
-# print(str(Path.home() / "jcvoo_0x511ADA8A_public.asc"))
-pubkey_path = str(Path.home() / "jcvoo_0x511ADA8A_public.asc")
+# Get Pub Key File path - default for me
+pubkey_path = str(Path.home() / "0x511ADA8A_public.asc")
 pubkey = open(pubkey_path, "r").read()
 
-# Import keys
+# Import keys for encryption
 gpg = gnupg.GPG(gnupghome=str(Path.home()))
 import_res = gpg.import_keys(pubkey)
+public_keys = gpg.list_keys()
 
-# Move all files into folder - TODO
+# Get List of all zip files in folder
 
-# tempfolder = getenv("APPDATA")
-# for jsonfile in onlyjson:
-#    replace(str(Path.home() / jsonfile), str(tempfolder+"/"+jsonfile))
 
-# Zip files - TODO
+exit()
+
+# Main Loop - For all filetypes
+for filetype in file_list.keys():
+
+    # Move all files into TEMP folder
+    movefiles(dlpath, temp_filepath, file_list[filetype])
+
+    # ZIP files in TEMP folder
+    zipfiles(temp_filepath, filetype)
+
+    # Sleep to make sure that we have unique filenames - TODO
+    sleep(1)
 
 # Encrypt Files - TODO
 
-# Delete Original JSON Files
-for jsonfile in onlyjson:
-    remove(f"{mypath}/{jsonfile}")
+# Upload Files - TODO
 
-# Delete EXE files
-for exefile in onlyexe:
-    remove(f"{mypath}/{exefile}")
-
-# Move to cloud
+# Delete Local Files - TODO
