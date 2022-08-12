@@ -1,10 +1,31 @@
 # from os import listdir, replace, getenv, remove
 import os
-from os.path import isfile, join
+from os.path import isfile, join, listdir
 from pathlib import Path
 import gnupg
 import shutil
 import time
+
+# Get File List
+def listOfFiles(path, filetype=None) -> list:
+
+    # Get FULL file list
+    filelist = [f for f in listdir(path) if isfile(join(path, f))]
+
+    # If no filetype specified
+    if not filetype:
+
+        # Return Filelist
+        return filelist
+
+    # Otherwise return for specific filetype
+    else:
+
+        # Sanitise input (string only)
+        if type(filetype) == str:
+
+            # Return filelist for specific filetype
+            return [f for f in filelist if f.split(".")[-1] == filetype]
 
 # Check if folder exists, if not create
 def check_create_folder(folderpath) -> None:
