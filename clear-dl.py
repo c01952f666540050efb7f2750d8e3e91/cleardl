@@ -1,14 +1,16 @@
-from os import listdir, walk, getenv, remove
-from os.path import isfile, join
+from os import getenv
+# listdir, walk, remove
+# from os.path import isfile, join
 from pathlib import Path
-import argparse
+# import argparse
 import gnupg
 from time import sleep
+# import dotenv
 
 # Local Imports
-from helpers import movefiles, check_create_folder, zipfiles
+from helpers import movefiles, check_create_folder, zipfiles, listOfFiles
 
-# Parse Arguments
+# Parse Arguments - TODO
 
 # Get appdata filepath
 temp_filepath = getenv("APPDATA")+"\\"+"TEMP"
@@ -21,13 +23,17 @@ typelist = ['json']
 
 # Get Download Path
 dlpath = str(Path.home() / "Downloads")
-# Get ALL Files
-onlyfiles = [f for f in listdir(dlpath) if isfile(join(dlpath, f))]
 
-# Get all relevant files
+# Get ALL Files via helper function
 file_list = {}
 for filetype in typelist:
-    file_list[filetype] = [f for f in onlyfiles if f.split(".")[-1] == filetype]
+    file_list[filetype] = listOfFiles(dlpath, filetype)
+
+# Get all relevant files
+# onlyfiles = [f for f in listdir(dlpath) if isfile(join(dlpath, f))]
+# file_list = {}
+# for filetype in typelist:
+#     file_list[filetype] = [f for f in onlyfiles if f.split(".")[-1] == filetype]
 
 # Get Pub Key File path - default for me
 pubkey_path = str(Path.home() / "0x511ADA8A_public.asc")
@@ -37,11 +43,6 @@ pubkey = open(pubkey_path, "r").read()
 gpg = gnupg.GPG(gnupghome=str(Path.home()))
 import_res = gpg.import_keys(pubkey)
 public_keys = gpg.list_keys()
-
-# Get List of all zip files in folder
-
-
-exit()
 
 # Main Loop - For all filetypes
 for filetype in file_list.keys():
@@ -53,7 +54,11 @@ for filetype in file_list.keys():
     zipfiles(temp_filepath, filetype)
 
     # Sleep to make sure that we have unique filenames - TODO
+    # This is because the filenames are based on the unix timestamp
     sleep(1)
+
+# Remove temp files
+
 
 # Encrypt Files - TODO
 

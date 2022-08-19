@@ -1,6 +1,6 @@
 # from os import listdir, replace, getenv, remove
 import os
-from os.path import isfile, join, listdir
+from os.path import isfile, join, exists
 from pathlib import Path
 import gnupg
 import shutil
@@ -10,7 +10,7 @@ import time
 def listOfFiles(path, filetype=None) -> list:
 
     # Get FULL file list
-    filelist = [f for f in listdir(path) if isfile(join(path, f))]
+    filelist = [f for f in os.listdir(path) if isfile(join(path, f))]
 
     # If no filetype specified
     if not filetype:
