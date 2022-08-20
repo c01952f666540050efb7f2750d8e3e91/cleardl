@@ -66,9 +66,21 @@ def zipfiles(folderpath, iden) -> None:
     # Getting unix timestamp for unique filename
     time_str = int(time.time())
 
+    # Check Create folder
+    check_create_folder(folderpath)
+
     # Make Archive
     shutil.make_archive(f"{time_str}_{iden}_archive", "zip", folderpath)
 
+# Remove any all files from the TEMP folder
+def cleanTempFiles(filepath, filelist, filetype):
+    print(f"Removing filetype:{filetype} from junk!")
+
+    # For all files
+    for files in filelist:
+
+        # Remove the files
+        os.remove(filepath+"\\"+files)
 
 
 def uploadfile(frompath, func, **kwargs) -> None:

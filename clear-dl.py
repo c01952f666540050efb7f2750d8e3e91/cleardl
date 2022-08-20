@@ -8,9 +8,10 @@ from time import sleep
 # import dotenv
 
 # Local Imports
-from helpers import movefiles, check_create_folder, zipfiles, listOfFiles
+from helpers import movefiles, check_create_folder, zipfiles, listOfFiles, cleanTempFiles
 
 # Parse Arguments - TODO
+
 
 # Get appdata filepath
 temp_filepath = getenv("APPDATA")+"\\"+"TEMP"
@@ -28,12 +29,6 @@ dlpath = str(Path.home() / "Downloads")
 file_list = {}
 for filetype in typelist:
     file_list[filetype] = listOfFiles(dlpath, filetype)
-
-# Get all relevant files
-# onlyfiles = [f for f in listdir(dlpath) if isfile(join(dlpath, f))]
-# file_list = {}
-# for filetype in typelist:
-#     file_list[filetype] = [f for f in onlyfiles if f.split(".")[-1] == filetype]
 
 # Get Pub Key File path - default for me
 pubkey_path = str(Path.home() / "0x511ADA8A_public.asc")
@@ -57,10 +52,11 @@ for filetype in file_list.keys():
     # This is because the filenames are based on the unix timestamp
     sleep(1)
 
-# Remove temp files
+    # Remove temp files
+    cleanTempFiles(temp_filepath, file_list[filetype], filetype)
 
+# Encrypt Zipped File - TODO
 
-# Encrypt Files - TODO
 
 # Upload Files - TODO
 
