@@ -1,11 +1,8 @@
 from os import getenv
-# listdir, walk, remove
-# from os.path import isfile, join
 from pathlib import Path
 import argparse
 import gnupg
 from time import sleep
-# import dotenv
 
 # Local Imports
 from helpers import movefiles, check_create_folder, zipfiles, listOfFiles, cleanTempFiles
@@ -17,7 +14,7 @@ args = parser.parse_args()
 if args.filepath and type(args.filepath) == str :
     rm_filepath = args.filepath
 
-# Get appdata filepath
+# Get appdata filepath - This makes it windows only - TODO - add check for mac
 temp_filepath = getenv("APPDATA")+"\\"+"TEMP"
 
 # Check Create Temp folder
@@ -27,8 +24,7 @@ check_create_folder(temp_filepath)
 typelist = ['json']
 
 # Get Download Path
-#dlpath = str(Path.home() / "Downloads")
-
+rmpath = str(Path.home() / "Downloads")
 
 # Get ALL Files via helper function
 file_list = {}
