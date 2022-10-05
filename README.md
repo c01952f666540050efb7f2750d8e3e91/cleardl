@@ -8,6 +8,9 @@ Please use at your own risk.
 Requirements (to start):
 Python 3, although this is written in 3.10.2
 
+To install python, you can download it here:
+https://www.python.org/downloads/
+
 You can first navigate to the folder directory. Then you can install the required packages.
 '''cd clear-dl'''
 '''pip install -r requirements.txt'''
