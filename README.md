@@ -12,18 +12,26 @@ To install python, you can download it here:
 https://www.python.org/downloads/
 
 You can first navigate to the folder directory. Then you can install the required packages.
-'''cd clear-dl'''
-'''pip install -r requirements.txt'''
+'''
+cd clear-dl
+'''
+'''
+pip install -r requirements.txt
+'''
 
 You can then run the script via:
 
-'''python3 -m clear-dl.py'''
+'''
+python3 -m clear-dl.py
+'''
 
 If you do not have python scripts in your PATH folder. (I can show you how to do this if you'd like).
 
 There are some specific arguments:
 
-'''python3 -m clear-dl.py --filepath C:\Users\USERID\Downloads'''
+'''
+python3 -m clear-dl.py --filepath C:\Users\USERID\Downloads
+'''
 
 So you can select the specific path that you want to remove from.
 And that's it! You won't need to do much else.
