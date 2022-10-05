@@ -11,7 +11,12 @@ Python 3, although this is written in 3.10.2
 To install python, you can download it here:
 https://www.python.org/downloads/
 
-You can first navigate to the folder directory. Then you can install the required packages.
+You can first navigate to the folder directory, via the command line. In windows this can be accessed by:
+Windows button (and search) cmd.
+
+You're looking for the "Command Prompt"
+
+Then you can install the required packages.
 
 ```cd clear-dl```
 
