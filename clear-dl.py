@@ -4,6 +4,8 @@ import argparse
 import gnupg
 from time import sleep
 
+# Version 0.1
+
 # Local Imports
 from helpers import movefiles, check_create_folder, zipfiles, listOfFiles, cleanTempFiles
 
@@ -38,7 +40,7 @@ for filetype in file_list.keys():
     movefiles(rm_filepath, temp_filepath, file_list[filetype])
 
     # ZIP files in TEMP folder
-    zipfiles(temp_filepath, filetype)
+    # zipfiles(temp_filepath, filetype)
 
     # Sleep to make sure that we have unique filenames - TODO
     # This is because the filenames are based on the unix timestamp
