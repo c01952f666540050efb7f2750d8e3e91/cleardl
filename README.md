@@ -17,12 +17,9 @@ You can first navigate to the folder directory. Then you can install the require
 
 ```pip install -r requirements.txt```
 
-
 You can then run the script via:
 
-
 ```python3 -m clear-dl.py```
-
 
 If you do not have python scripts in your PATH folder. (I can show you how to do this if you'd like).
 
