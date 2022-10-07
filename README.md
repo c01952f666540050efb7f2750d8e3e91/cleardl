@@ -16,7 +16,8 @@ Windows button (and search) cmd.
 
 You're looking for the "Command Prompt"
 
-You can download this git repo via git if you have it installed
+You can download this git repo via git if you have it installed by running this command.
+
 ```git clone https://github.com/c01952f666540050efb7f2750d8e3e91/cleardl.git```
 
 You can download git via:
