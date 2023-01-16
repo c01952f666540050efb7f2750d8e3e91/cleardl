@@ -23,7 +23,7 @@ temp_filepath = getenv("APPDATA")+"\\"+"TEMP"
 check_create_folder(temp_filepath)
 
 # List Filetypes to remove
-typelist = ['json', 'pdf']
+typelist = ['json']
 
 # Get Download Path
 rmpath = str(Path.home() / "Downloads")
