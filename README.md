@@ -33,13 +33,15 @@ You can then run the script via:
 
 ```python3 -m clear-dl.py```
 
-If you do not have python scripts in your PATH folder. (I can show you how to do this if you'd like).
+If you do not have python scripts in your PATH folder.
 
 There are some specific arguments:
 
 ```python3 -m clear-dl.py --filepath C:\Users\USERID\Downloads```
 
 So you can select the specific path that you want to remove from.
+If you're operating on OSX, I've yet to test this, although there's no reason why I shouldn't work.
+
 And that's it! You won't need to do much else.
 
 ## Current roadmap
