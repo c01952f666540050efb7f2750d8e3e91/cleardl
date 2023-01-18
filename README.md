@@ -25,7 +25,7 @@ https://git-scm.com/downloads
 
 Then you can install the required packages.
 
-```cd clear-dl```
+```cd cleardl```
 
 ```pip install -r requirements.txt```
 
